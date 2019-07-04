@@ -42,21 +42,21 @@ class ControllerPaymentAssetPayments extends Controller {
 		$data['action'] = 'https://assetpayments.us/checkout/pay';
 
 		$send_data = Array(
-			'TemplateId' => $this->config->get('assetpayments_template'),
+	    'TemplateId' => $this->config->get('assetpayments_template'),
             'MerchantInternalOrderId' => $this->session->data['order_id'],
             'StatusURL' => $this->url->link('payment/assetpayments/callback', '', 'SSL'),
             'ReturnURL' => $this->url->link('checkout/success', '', 'SSL'),
-			'FirstName' => $order_info['payment_firstname']. ' ' . $order_info['payment_lastname'],
+	    'FirstName' => $order_info['payment_firstname']. ' ' . $order_info['payment_lastname'],
             'LastName' => $order_info['payment_lastname'],
             'Email' => $order_info['email'],
             'Phone' => $phone,           
             'Address' => $order_info['payment_address_1'] . ' ' . $order_info['payment_address_2'] . ' ' . $order_info['payment_city'].' '.$order_info['payment_country'] . ' ' . $order_info['payment_postcode'],           
             'CountryISO' => $country, 
-			'Amount' => $this->currency->format($order_info['total'], $order_info['currency_code'], $order_info['currency_value'], false),
+	    'Amount' => $this->currency->format($order_info['total'], $order_info['currency_code'], $order_info['currency_value'], false),
             'Currency' => $order_info['currency_code'],
-			'CustomMerchantInfo' => 'OpenCart: ' .''. VERSION,
+	    'CustomMerchantInfo' => 'Order #: ' .''. $this->session->data['order_id'],
             'AssetPaymentsKey' => $this->config->get('assetpayments_merchant'),
-			'Products' => $request['Products']
+	    'Products' => $request['Products']
           );
 		  
 		  
